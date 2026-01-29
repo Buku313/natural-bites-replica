@@ -17,12 +17,16 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2d2d2d] mb-16 max-w-4xl leading-tight tracking-wide">
+        <h1
+          className="text-3xl md:text-4xl lg:text-5xl font-bold mb-16 max-w-4xl leading-tight tracking-wide"
+          style={{ color: '#1a1a1a' }}
+        >
           DISFRUTÁ CON NATURALIDAD CADA<br className="hidden md:block" /> MOMENTO
         </h1>
         <Link
           href="/tienda"
-          className="inline-flex items-center px-12 py-3.5 border border-[#444] text-[#333] bg-white/70 font-medium hover:bg-[#333] hover:text-white transition-all duration-300"
+          className="inline-flex items-center px-12 py-3.5 border border-[#333] bg-white/90 font-medium hover:bg-[#333] hover:text-white transition-all duration-300"
+          style={{ color: '#333' }}
         >
           ¡Comienza aquí!
         </Link>
