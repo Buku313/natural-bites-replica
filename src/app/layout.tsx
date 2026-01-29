@@ -10,7 +10,7 @@ const redHatDisplay = Red_Hat_Display({
 
 export const metadata: Metadata = {
   title: "Natural Bites | Snacks Saludables",
-  description: "En Natural Bites buscamos crear productos deliciosos y naturales que le den un sabor inolvidable a todas tus recetas, formando parte de un estilo de vida saludable.",
+  description: "En Natural Bites buscamos crear productos deliciosos y naturales que le den un sabor inolvidable a todas tus recetas, formando parte de un estilo de vida saludable. v9",
   icons: {
     icon: "/images/Logo.svg",
   },
