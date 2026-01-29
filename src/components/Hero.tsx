@@ -15,21 +15,21 @@ export default function Hero() {
         priority
       />
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+      {/* Content - Text at top, button in middle */}
+      <div className="relative z-10 flex flex-col items-center h-full text-center px-4 pt-16 md:pt-20">
         <h1
-          className="text-3xl md:text-4xl lg:text-5xl font-bold mb-16 max-w-4xl leading-tight tracking-wide"
-          style={{ color: '#1a1a1a' }}
+          className="text-3xl md:text-4xl lg:text-5xl font-bold max-w-4xl leading-tight tracking-wide text-[#1a1a1a]"
         >
           DISFRUTÁ CON NATURALIDAD CADA<br className="hidden md:block" /> MOMENTO
         </h1>
-        <Link
-          href="/tienda"
-          className="inline-flex items-center px-12 py-3.5 border border-[#333] bg-white/90 font-medium hover:bg-[#333] hover:text-white transition-all duration-300"
-          style={{ color: '#333' }}
-        >
-          ¡Comienza aquí!
-        </Link>
+        <div className="flex-1 flex items-center">
+          <Link
+            href="/tienda"
+            className="inline-flex items-center px-10 py-3 border border-[#333] bg-white font-medium text-[#333] hover:bg-[#333] hover:text-white transition-all duration-300"
+          >
+            ¡Comienza aquí!
+          </Link>
+        </div>
       </div>
 
       {/* Wavy Bottom */}
