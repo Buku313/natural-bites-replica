@@ -17,12 +17,12 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 pt-20">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333] mb-8 max-w-4xl leading-tight tracking-wide">
-          DISFRUTÁ CON NATURALIDAD CADA MOMENTO
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1a1a1a] mb-12 max-w-4xl leading-tight tracking-wide drop-shadow-sm">
+          DISFRUTÁ CON NATURALIDAD<br />CADA MOMENTO
         </h1>
         <Link
           href="/tienda"
-          className="inline-flex items-center px-8 py-3 border-2 border-[#333] text-[#333] font-medium hover:bg-[#333] hover:text-white transition-all duration-300"
+          className="inline-flex items-center px-10 py-3 border border-[#333] text-[#333] bg-white/80 backdrop-blur-sm font-medium hover:bg-[#333] hover:text-white transition-all duration-300"
         >
           ¡Comienza aquí!
         </Link>
