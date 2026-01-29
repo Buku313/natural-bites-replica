@@ -16,26 +16,26 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white">
+    <header className="fixed top-0 left-0 right-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo - Left */}
+        <div className="flex items-center justify-between h-20 md:h-24">
+          {/* Logo - Left (White version for hero overlay) */}
           <Link href="/" className="flex-shrink-0">
             <Image
-              src="/images/Logo.svg"
+              src="/images/nb logo white lowdef-640w.png"
               alt="Natural Bites"
-              width={90}
-              height={54}
-              className="h-10 md:h-12 w-auto"
+              width={100}
+              height={60}
+              className="h-12 md:h-14 w-auto"
             />
           </Link>
 
           {/* Center - Search and Cart Icons */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-8">
             {/* Search Icon */}
             <button className="p-2 hover:opacity-70 transition-opacity">
-              <div className="w-8 h-8 rounded-full border border-gray-400 flex items-center justify-center">
-                <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-9 h-9 rounded-full border-2 border-white/80 flex items-center justify-center bg-white/20">
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
@@ -43,7 +43,7 @@ export default function Header() {
 
             {/* Cart Icon */}
             <button className="p-2 hover:opacity-70 transition-opacity">
-              <svg className="w-7 h-7 text-[#333]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-8 h-8 text-[#333]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>
             </button>
