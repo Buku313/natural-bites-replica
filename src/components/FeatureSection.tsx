@@ -58,23 +58,12 @@ export default function FeatureSection() {
         </div>
       </section>
 
-      {/* Feature 2 - Healthy snacks - 2 column layout (reversed) */}
+      {/* Feature 2 - Healthy snacks - 2 column layout (same as first) */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            {/* Left - Image */}
-            <div className="relative order-2 md:order-1">
-              <Image
-                src="/images/banano-1280w.png"
-                alt="Muffin Mix with Banana"
-                width={600}
-                height={500}
-                className="w-full h-auto"
-              />
-            </div>
-
-            {/* Right - Text Content */}
-            <div className="text-left order-1 md:order-2">
+            {/* Left - Text Content */}
+            <div className="text-left">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333] mb-6 leading-tight">
                 SNACKS SALUDABLES
                 <br />
@@ -89,6 +78,17 @@ export default function FeatureSection() {
               >
                 Conocé nuestras recetas
               </Link>
+            </div>
+
+            {/* Right - Image */}
+            <div className="relative">
+              <Image
+                src="/images/banano-1280w.png"
+                alt="Muffin Mix with Banana"
+                width={600}
+                height={500}
+                className="w-full h-auto"
+              />
             </div>
           </div>
         </div>
