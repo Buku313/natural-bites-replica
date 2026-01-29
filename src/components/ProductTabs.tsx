@@ -9,7 +9,7 @@ const categories = [
     product: {
       name: 'Peanut Butter Sugar Free',
       price: '₡5,040.00',
-      image: '/images/4839625724-640w.png',
+      image: '/images/peanut-butter-sugar-free.png',
     },
   },
   {
@@ -18,7 +18,7 @@ const categories = [
     product: {
       name: 'Almond Butter Protein',
       price: '₡8,925.00',
-      image: '/images/4839663755-640w.png',
+      image: '/images/almond-butter-protein.png',
     },
   },
   {
@@ -27,7 +27,7 @@ const categories = [
     product: {
       name: 'Choco Nut Butter',
       price: '₡7,245.00',
-      image: '/images/c5e2fd13b5928e4fac7aebc2d80fe140-640w.png',
+      image: '/images/choco-nut-butter.png',
     },
   },
 ];
