@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 const products = {
   mantequillas: [
@@ -79,17 +78,17 @@ export default function ProductTabs() {
   ];
 
   return (
-    <section className="py-16 px-4 bg-white">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-8 px-4 bg-white">
+      <div className="max-w-5xl mx-auto">
         {/* Tabs */}
-        <div className="flex justify-center gap-8 md:gap-16 mb-12">
+        <div className="flex justify-center gap-8 md:gap-16 mb-10">
           {tabs.map((tab) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className={`text-lg md:text-xl font-medium transition-all ${
+              className={`text-base md:text-lg font-medium transition-all ${
                 activeTab === tab.key
-                  ? 'text-[#333] underline underline-offset-8 decoration-2'
+                  ? 'text-[#333] underline underline-offset-8 decoration-1'
                   : 'text-[#666] hover:text-[#333]'
               }`}
             >
@@ -99,28 +98,36 @@ export default function ProductTabs() {
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {products[activeTab].map((product) => (
-            <div key={product.id} className="text-center group">
-              <div className="relative aspect-square mb-4 overflow-hidden rounded-lg bg-gray-50">
+            <div key={product.id} className="text-center">
+              {/* Product Image */}
+              <div className="relative h-40 md:h-48 mb-4 flex items-center justify-center">
                 <Image
                   src={product.image}
                   alt={product.name}
-                  fill
-                  className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                  width={160}
+                  height={160}
+                  className="object-contain max-h-full"
                 />
               </div>
-              <h3 className="text-lg font-medium text-[#333] mb-2">{product.name}</h3>
-              <div className="flex items-center justify-center gap-4 mb-4">
-                <span className="text-[#666]">Cantidad</span>
+
+              {/* Product Name */}
+              <h3 className="text-base font-medium text-[#333] mb-3">{product.name}</h3>
+
+              {/* Quantity Selector */}
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <span className="text-sm text-[#666]">Cantidad</span>
                 <input
                   type="number"
                   defaultValue={1}
                   min={1}
-                  className="w-16 px-3 py-1 border border-gray-300 rounded text-center"
+                  className="w-14 px-2 py-1 text-sm border border-gray-300 rounded text-center focus:outline-none focus:border-[#f5c964]"
                 />
               </div>
-              <button className="btn-primary w-full max-w-xs">
+
+              {/* Buy Button */}
+              <button className="bg-[#f5c964] text-[#333] text-sm font-medium px-6 py-2.5 rounded-full hover:bg-[#e5b54e] transition-colors">
                 {product.price} | Compre ahora
               </button>
             </div>
