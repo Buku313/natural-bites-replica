@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Red_Hat_Display } from "next/font/google";
+import { SanityLive } from "@/sanity/lib/live";
 import "./globals.css";
 
 const redHatDisplay = Red_Hat_Display({
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="es">
       <body className={`${redHatDisplay.variable} antialiased`}>
         {children}
+        <SanityLive />
       </body>
     </html>
   );

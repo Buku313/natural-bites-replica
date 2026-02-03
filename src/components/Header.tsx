@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import { urlFor } from '@/sanity/lib/image';
 
-const navLinks = [
+const defaultNavLinks = [
   { href: '/', label: 'Home' },
   { href: '/tienda', label: 'Tienda' },
   { href: '/recetas', label: 'Recetas' },
@@ -12,7 +13,20 @@ const navLinks = [
   { href: '/nosotros', label: 'Nosotros' },
 ];
 
-export default function Header() {
+interface HeaderProps {
+  settings?: {
+    logo?: { asset?: { url?: string } };
+    navLinks?: Array<{ _key: string; label: string; href: string }>;
+  } | null;
+}
+
+export default function Header({ settings }: HeaderProps = {}) {
+  const navLinks = settings?.navLinks?.length
+    ? settings.navLinks.map((l) => ({ href: l.href, label: l.label }))
+    : defaultNavLinks;
+  const logoSrc = settings?.logo?.asset
+    ? urlFor(settings.logo).width(140).height(90).url()
+    : '/images/Logo.svg';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('/');
 
@@ -23,11 +37,12 @@ export default function Header() {
           {/* Logo - Left */}
           <Link href="/" className="flex-shrink-0">
             <Image
-              src="/images/Logo.svg"
+              src={logoSrc}
               alt="Natural Bites"
               width={70}
               height={45}
               className="h-9 md:h-11 w-auto"
+              unoptimized={!!settings?.logo?.asset}
             />
           </Link>
 

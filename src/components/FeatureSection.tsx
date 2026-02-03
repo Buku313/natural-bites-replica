@@ -1,7 +1,47 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { urlFor } from '@/sanity/lib/image';
 
-export default function FeatureSection() {
+interface FeatureSectionProps {
+  data?: {
+    feature1Heading?: string;
+    feature1Paragraph?: string;
+    feature1ButtonText?: string;
+    feature1ButtonLink?: string;
+    feature1Image?: { asset?: { _id: string; url: string }; alt?: string };
+    bannerImage?: { asset?: { _id: string; url: string }; alt?: string };
+    feature2Heading?: string;
+    feature2Paragraph?: string;
+    feature2ButtonText?: string;
+    feature2ButtonLink?: string;
+    feature2Image?: { asset?: { _id: string; url: string }; alt?: string };
+  } | null;
+}
+
+export default function FeatureSection({ data }: FeatureSectionProps = {}) {
+  const feature1Heading = data?.feature1Heading ?? 'UN SNACK CON NATURALIDAD PARA TODO MOMENTO';
+  const feature1Paragraph = data?.feature1Paragraph ?? 'Ya sea en un momento a solas, con amigos o en un break, nuestros productos te acompañan en cada momento, siempre con naturalidad.';
+  const feature1ButtonText = data?.feature1ButtonText ?? 'Elegí tu favorito';
+  const feature1ButtonLink = data?.feature1ButtonLink ?? '/tienda';
+  const feature1ImageSrc = data?.feature1Image?.asset
+    ? urlFor(data.feature1Image).width(1280).url()
+    : '/images/8fae07bab892bc35820ec6d8e12a552d-1280w.jpg';
+  const feature1ImageAlt = data?.feature1Image?.alt ?? 'Tortilla chips with dips';
+
+  const bannerImageSrc = data?.bannerImage?.asset
+    ? urlFor(data.bannerImage).width(1920).url()
+    : '/images/Banner-Nuevo-Look-1920-X-2880-1920w.jpg';
+  const bannerImageAlt = data?.bannerImage?.alt ?? 'New Product Alert - 4 nuevos sabores';
+
+  const feature2Heading = data?.feature2Heading ?? 'SNACKS SALUDABLES PARA TODO MOMENTO';
+  const feature2Paragraph = data?.feature2Paragraph ?? 'Una deliciosa variedad de snacks saludables que todos pueden disfrutar en cualquier ocasión.';
+  const feature2ButtonText = data?.feature2ButtonText ?? 'Conocé nuestras recetas';
+  const feature2ButtonLink = data?.feature2ButtonLink ?? '/recetas';
+  const feature2ImageSrc = data?.feature2Image?.asset
+    ? urlFor(data.feature2Image).width(1280).url()
+    : '/images/banano-1280w.png';
+  const feature2ImageAlt = data?.feature2Image?.alt ?? 'Muffin Mix with Banana';
+
   return (
     <>
       {/* Feature 1 - Snack for every moment - 2 column layout */}
@@ -10,33 +50,29 @@ export default function FeatureSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             {/* Left - Text Content */}
             <div className="text-left">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333] mb-6 leading-tight">
-                UN SNACK CON
-                <br />
-                NATURALIDAD PARA
-                <br />
-                TODO MOMENTO
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333] mb-6 leading-tight whitespace-pre-line">
+                {feature1Heading}
               </h2>
               <p className="text-base md:text-lg text-[#666] mb-8 leading-relaxed max-w-md">
-                Ya sea en un momento a solas, con amigos o en un break, nuestros productos te
-                acompañan en cada momento, siempre con naturalidad.
+                {feature1Paragraph}
               </p>
               <Link
-                href="/tienda"
+                href={feature1ButtonLink}
                 className="inline-block px-8 py-3 bg-[#f5c964] text-[#333] font-medium rounded-full hover:bg-[#e5b54e] transition-all duration-300"
               >
-                Elegí tu favorito
+                {feature1ButtonText}
               </Link>
             </div>
 
             {/* Right - Image */}
             <div className="relative">
               <Image
-                src="/images/8fae07bab892bc35820ec6d8e12a552d-1280w.jpg"
-                alt="Tortilla chips with dips"
+                src={feature1ImageSrc}
+                alt={feature1ImageAlt}
                 width={600}
                 height={500}
                 className="w-full h-auto rounded-lg"
+                unoptimized={!!data?.feature1Image?.asset}
               />
             </div>
           </div>
@@ -48,11 +84,12 @@ export default function FeatureSection() {
         <div className="max-w-5xl mx-auto px-4">
           <div className="relative rounded-xl overflow-hidden">
             <Image
-              src="/images/Banner-Nuevo-Look-1920-X-2880-1920w.jpg"
-              alt="New Product Alert - 4 nuevos sabores"
+              src={bannerImageSrc}
+              alt={bannerImageAlt}
               width={1920}
               height={600}
               className="w-full h-auto"
+              unoptimized={!!data?.bannerImage?.asset}
             />
           </div>
         </div>
@@ -64,30 +101,29 @@ export default function FeatureSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             {/* Left - Text Content */}
             <div className="text-left">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333] mb-6 leading-tight">
-                SNACKS SALUDABLES
-                <br />
-                PARA TODO MOMENTO
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#333] mb-6 leading-tight whitespace-pre-line">
+                {feature2Heading}
               </h2>
               <p className="text-base md:text-lg text-[#666] mb-8 leading-relaxed max-w-md">
-                Una deliciosa variedad de snacks saludables que todos pueden disfrutar en cualquier ocasión.
+                {feature2Paragraph}
               </p>
               <Link
-                href="/recetas"
+                href={feature2ButtonLink}
                 className="inline-block px-8 py-3 bg-[#f5c964] text-[#333] font-medium rounded-full hover:bg-[#e5b54e] transition-all duration-300"
               >
-                Conocé nuestras recetas
+                {feature2ButtonText}
               </Link>
             </div>
 
             {/* Right - Image */}
             <div className="relative">
               <Image
-                src="/images/banano-1280w.png"
-                alt="Muffin Mix with Banana"
+                src={feature2ImageSrc}
+                alt={feature2ImageAlt}
                 width={600}
                 height={500}
                 className="w-full h-auto"
+                unoptimized={!!data?.feature2Image?.asset}
               />
             </div>
           </div>

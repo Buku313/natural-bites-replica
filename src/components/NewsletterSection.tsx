@@ -1,7 +1,27 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { urlFor } from '@/sanity/lib/image';
 
-export default function NewsletterSection() {
+interface NewsletterSectionProps {
+  data?: {
+    newsletterHeading?: string;
+    newsletterParagraph?: string;
+    newsletterButtonText?: string;
+    newsletterButtonLink?: string;
+    newsletterImage?: { asset?: { _id: string; url: string }; alt?: string };
+  } | null;
+}
+
+export default function NewsletterSection({ data }: NewsletterSectionProps = {}) {
+  const heading = data?.newsletterHeading ?? 'EAT HEALTHY.\nSMILE MORE.';
+  const paragraph = data?.newsletterParagraph ?? 'Recibe tips de cocina saludable\n¡todas las semanas en tu email!';
+  const buttonText = data?.newsletterButtonText ?? '¡Suscríbete aquí!';
+  const buttonLink = data?.newsletterButtonLink ?? '/recetas';
+  const imageSrc = data?.newsletterImage?.asset
+    ? urlFor(data.newsletterImage).width(640).url()
+    : '/images/bowl-640w.png';
+  const imageAlt = data?.newsletterImage?.alt ?? 'Bowl of nuts';
+
   return (
     <section className="py-12 px-4">
       <div className="max-w-5xl mx-auto">
@@ -17,30 +37,38 @@ export default function NewsletterSection() {
 
           <div className="relative grid md:grid-cols-2 gap-6 items-center p-6 md:p-10">
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#333] mb-1">
-                EAT HEALTHY.
-              </h2>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#333] mb-4">
-                SMILE MORE.
-              </h2>
-              <p className="text-sm md:text-base text-[#333] mb-6">
-                Recibe tips de cocina saludable<br />
-                ¡todas las semanas en tu email!
+              {data?.newsletterHeading ? (
+                <h2 className="text-2xl md:text-3xl font-bold text-[#333] mb-4 whitespace-pre-line">
+                  {heading}
+                </h2>
+              ) : (
+                <>
+                  <h2 className="text-2xl md:text-3xl font-bold text-[#333] mb-1">
+                    EAT HEALTHY.
+                  </h2>
+                  <h2 className="text-2xl md:text-3xl font-bold text-[#333] mb-4">
+                    SMILE MORE.
+                  </h2>
+                </>
+              )}
+              <p className="text-sm md:text-base text-[#333] mb-6 whitespace-pre-line">
+                {paragraph}
               </p>
               <Link
-                href="/recetas"
+                href={buttonLink}
                 className="inline-block px-6 py-2.5 bg-[#333] text-white font-medium rounded-full hover:bg-[#222] transition-colors"
               >
-                ¡Suscríbete aquí!
+                {buttonText}
               </Link>
             </div>
             <div className="relative flex justify-center md:justify-end">
               <Image
-                src="/images/bowl-640w.png"
-                alt="Bowl of nuts"
+                src={imageSrc}
+                alt={imageAlt}
                 width={250}
                 height={250}
                 className="object-contain"
+                unoptimized={!!data?.newsletterImage?.asset}
               />
             </div>
           </div>

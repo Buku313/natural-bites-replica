@@ -1,43 +1,19 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
-import Link from 'next/link';
+import { client } from '@/sanity/lib/client';
+import { SITE_SETTINGS_QUERY, ALL_RECIPES_QUERY } from '@/sanity/lib/queries';
+import { urlFor } from '@/sanity/lib/image';
 
-const recipes = [
-  {
-    id: 1,
-    title: 'Pancakes de Avena con Peanut Butter',
-    description: 'Deliciosos pancakes saludables para comenzar el día con energía.',
-    image: '/images/fb33a7b2fe2c99ac52fca83182b6d115-1280w.png',
-    category: 'Desayuno',
-  },
-  {
-    id: 2,
-    title: 'Bowl de Frutas con Almond Butter',
-    description: 'Un bowl nutritivo y lleno de sabor natural.',
-    image: '/images/bowl-1280w.png',
-    category: 'Desayuno',
-  },
-  {
-    id: 3,
-    title: 'Nachos Saludables con Guacamole',
-    description: 'Perfectos para compartir con amigos y familia.',
-    image: '/images/8fae07bab892bc35820ec6d8e12a552d-1280w.jpg',
-    category: 'Snacks',
-  },
-  {
-    id: 4,
-    title: 'Muffins de Banano y Avena',
-    description: 'Muffins esponjosos y naturales para cualquier momento.',
-    image: '/images/banano-1280w.png',
-    category: 'Postres',
-  },
-];
+export default async function Recetas() {
+  const [settings, recipes] = await Promise.all([
+    client.fetch(SITE_SETTINGS_QUERY),
+    client.fetch(ALL_RECIPES_QUERY),
+  ]);
 
-export default function Recetas() {
   return (
     <main className="pt-20">
-      <Header />
+      <Header settings={settings} />
 
       {/* Hero Section */}
       <section className="relative h-[50vh] overflow-hidden">
@@ -63,25 +39,38 @@ export default function Recetas() {
       <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {recipes.map((recipe) => (
-              <article key={recipe.id} className="group cursor-pointer">
+            {recipes.map((recipe: {
+              _id: string;
+              title: string;
+              description?: string;
+              image?: { asset?: { url?: string }; alt?: string };
+              category?: { title?: string };
+            }) => (
+              <article key={recipe._id} className="group cursor-pointer">
                 <div className="relative aspect-video mb-4 overflow-hidden rounded-lg">
-                  <Image
-                    src={recipe.image}
-                    alt={recipe.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-[#f5c964] text-[#333] px-3 py-1 rounded-full text-sm font-medium">
-                      {recipe.category}
-                    </span>
-                  </div>
+                  {recipe.image?.asset && (
+                    <Image
+                      src={urlFor(recipe.image).width(640).height(360).url()}
+                      alt={recipe.image.alt || recipe.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      unoptimized
+                    />
+                  )}
+                  {recipe.category?.title && (
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-[#f5c964] text-[#333] px-3 py-1 rounded-full text-sm font-medium">
+                        {recipe.category.title}
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <h3 className="text-xl font-bold text-[#333] mb-2 group-hover:text-[#f5c964] transition-colors">
                   {recipe.title}
                 </h3>
-                <p className="text-[#666]">{recipe.description}</p>
+                {recipe.description && (
+                  <p className="text-[#666]">{recipe.description}</p>
+                )}
               </article>
             ))}
           </div>
@@ -110,7 +99,7 @@ export default function Recetas() {
         </div>
       </section>
 
-      <Footer />
+      <Footer settings={settings} />
     </main>
   );
 }
