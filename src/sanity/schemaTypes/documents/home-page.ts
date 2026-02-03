@@ -22,14 +22,6 @@ export const homePage = defineType({
   fields: [
     // Hero
     defineField({
-      name: 'heroImage',
-      title: 'Background Image',
-      type: 'image',
-      options: { hotspot: true },
-      fields: [defineField({ name: 'alt', type: 'string', title: 'Alt Text' })],
-      fieldset: 'hero',
-    }),
-    defineField({
       name: 'heroHeading',
       title: 'Heading',
       type: 'string',

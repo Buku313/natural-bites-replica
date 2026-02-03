@@ -39,7 +39,6 @@ export const ALL_RECIPES_QUERY = defineQuery(/* groq */ `
 
 export const HOME_PAGE_QUERY = defineQuery(/* groq */ `
   *[_type == "homePage"][0]{
-    heroImage { asset->{ _id, url }, alt },
     heroHeading,
     heroButtonText,
     heroButtonLink,
