@@ -14,7 +14,7 @@ export default function Hero({ data }: HeroProps = {}) {
   const buttonLink = data?.heroButtonLink ?? '/tienda';
 
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section className="relative w-full h-[75vh] md:h-screen overflow-hidden">
       <video
         autoPlay
         muted
@@ -28,21 +28,19 @@ export default function Hero({ data }: HeroProps = {}) {
           type="video/mp4"
         />
       </video>
-      <div className="relative z-10 flex flex-col items-center h-full text-center px-4">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
         <h1
-          className="text-4xl md:text-5xl lg:text-6xl font-bold max-w-4xl leading-tight tracking-wide mt-16 md:mt-20 whitespace-pre-line"
+          className="text-3xl md:text-5xl lg:text-6xl font-bold max-w-4xl leading-tight tracking-wide whitespace-pre-line"
           style={{ color: '#000000' }}
         >
           {heading}
         </h1>
-        <div className="flex-1 flex items-center">
-          <Link
-            href={buttonLink}
-            className="inline-flex items-center px-12 py-4 border-2 border-[#333] bg-white font-medium text-[#333] hover:bg-[#333] hover:text-white transition-all duration-300 text-lg"
-          >
-            {buttonText}
-          </Link>
-        </div>
+        <Link
+          href={buttonLink}
+          className="inline-flex items-center px-12 py-4 border-2 border-[#333] bg-white font-medium text-[#333] hover:bg-[#333] hover:text-white transition-all duration-300 text-lg mt-8"
+        >
+          {buttonText}
+        </Link>
       </div>
       <div className="absolute bottom-0 left-0 w-full">
         <svg

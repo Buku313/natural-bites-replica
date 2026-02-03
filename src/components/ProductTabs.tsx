@@ -62,7 +62,7 @@ export default function ProductTabs({ data }: ProductTabsProps = {}) {
                 return (
                   <div key={product._id} className="text-center">
                     <h3
-                      className={`text-xl md:text-2xl font-medium mb-8 ${
+                      className={`text-xl md:text-2xl font-medium mb-4 md:mb-8 ${
                         index === 0
                           ? 'text-[#333] underline underline-offset-8 decoration-1'
                           : 'text-[#333]'
@@ -99,7 +99,7 @@ export default function ProductTabs({ data }: ProductTabsProps = {}) {
             : defaultProducts.map((product, index) => (
                 <div key={index} className="text-center">
                   <h3
-                    className={`text-xl md:text-2xl font-medium mb-8 ${
+                    className={`text-xl md:text-2xl font-medium mb-4 md:mb-8 ${
                       product.isActive
                         ? 'text-[#333] underline underline-offset-8 decoration-1'
                         : 'text-[#333]'

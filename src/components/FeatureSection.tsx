@@ -45,7 +45,7 @@ export default function FeatureSection({ data }: FeatureSectionProps = {}) {
   return (
     <>
       {/* Feature 1 - Snack for every moment - 2 column layout */}
-      <section className="py-16 px-4 bg-white">
+      <section className="py-10 md:py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             {/* Left - Text Content */}
@@ -80,7 +80,7 @@ export default function FeatureSection({ data }: FeatureSectionProps = {}) {
       </section>
 
       {/* New Product Alert Banner */}
-      <section className="py-8">
+      <section className="py-4 md:py-8">
         <div className="max-w-5xl mx-auto px-4">
           <div className="relative rounded-xl overflow-hidden">
             <Image
@@ -96,7 +96,7 @@ export default function FeatureSection({ data }: FeatureSectionProps = {}) {
       </section>
 
       {/* Feature 2 - Healthy snacks - 2 column layout (same as first) */}
-      <section className="py-16 px-4 bg-white">
+      <section className="py-10 md:py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             {/* Left - Text Content */}

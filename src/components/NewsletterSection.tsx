@@ -23,7 +23,7 @@ export default function NewsletterSection({ data }: NewsletterSectionProps = {})
   const imageAlt = data?.newsletterImage?.alt ?? 'Bowl of nuts';
 
   return (
-    <section className="py-12 px-4">
+    <section className="py-8 md:py-12 px-4">
       <div className="max-w-5xl mx-auto">
         <div className="bg-[#f5c964] rounded-xl overflow-hidden relative">
           {/* Leaf pattern background - subtle */}
